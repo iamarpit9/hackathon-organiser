@@ -1,0 +1,42 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.timer-container{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 10px;
+}
+
+.timer{
+    display: flex;
+    position: relative;
+    margin: auto;
+
+}
+
+.clock{
+      display: flex;
+    position: relative;
+    margin: auto;
+}
+
+.clock h6{
+padding: 6px;}
+
+.clock section{
+    padding: 5px;
+}
+
+
+
+.clock span{
+    padding: 5px;
+}
+

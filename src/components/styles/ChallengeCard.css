@@ -1,0 +1,29 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.challenge-card-cont{
+   
+    padding: 0 40px 60px 40px;
+    margin: 0 40px 60px 40px;
+}
+
+.challenge-card-cont input{
+    width: 60%;
+    height: 3rem;
+    border-radius: 15px;
+    padding: 10px;
+    border: none;
+    margin-bottom: 40px;
+}
+
+
+
+.participate-btn{
+    background-color: green;
+    border-radius: 15px;
+}
+
+

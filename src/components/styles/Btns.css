@@ -1,0 +1,11 @@
+
+.filter-btns{
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.filter-btns button{
+    background-color: white;
+    color: black;
+    font-size: 1rem;
+}
