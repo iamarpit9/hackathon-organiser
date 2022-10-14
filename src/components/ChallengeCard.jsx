@@ -42,6 +42,18 @@ const ChallengeCard = () => {
 
   const currentTime = new Date().toISOString().split("T")[0];
 
+  const hackStatus = (start, end) => {
+    if (currentTime > end) return "Past";
+    else if (currentTime < start) return "Upcoming";
+    else return "Active";
+  };
+
+  const timerStatus = (start, end) => {
+    if (currentTime > end) return "Ended on";
+    else if (currentTime < start) return "Starts in";
+    else return "On going";
+  };
+
   // Filter Feature
 
   const [item, setItem] = useState(user);
@@ -50,12 +62,25 @@ const ChallengeCard = () => {
     const newItem = user.filter((newVal) => {
       return newVal.level == curcat;
     });
-    if(newItem){
-
+    if (newItem) {
       setItem(newItem);
-    }else{
+    } else {
       const message = "Nothing to show";
-      return {message};
+      return { message };
+    }
+  };
+
+  const filterItem2 = (curcat) => {
+    const newItem = user.filter((newVal) => {
+      if (currentTime > newVal.endDate) return "Past" === curcat;
+      else if (currentTime < newVal.startDate) return "Up Coming" === curcat;
+      else return "Active" === curcat;
+    });
+    if (newItem) {
+      setItem(newItem);
+    } else {
+      const message = "Nothing to show";
+      return { message };
     }
   };
 
@@ -69,7 +94,12 @@ const ChallengeCard = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <Btns filterItem={filterItem} setItem={setItem} user={user} />
+        <Btns
+          filterItem={filterItem}
+          filterItem2={filterItem2}
+          setItem={setItem}
+          user={user}
+        />
         <Row xs={3} md={3} className="g-4">
           {user &&
             item
@@ -85,27 +115,31 @@ const ChallengeCard = () => {
               })
               .map((item) => (
                 <Col key={item.id}>
-                  <Card style={{ borderRadius: "15px" }}>
-                    <Card.Img variant="top" src={item.img} />
+                  <Card style={{ borderRadius: "15px", height: "auto" }}>
+                    <Card.Img
+                      variant="top"
+                      src={item.img}
+                      style={{ objectFit: "contain", height: "200px" }}
+                    />
 
                     <Card.Body>
                       <Badge pill bg="info">
-                        {item.endDate < currentTime ? "Past" : "Upcoming"}
+                        {hackStatus(item.startDate, item.endDate)}
                       </Badge>
                       <Card.Title>{item.title}</Card.Title>
                       <Timer
                         startDate={item.startDate}
                         endDate={item.endDate}
-                        status={
-                          item.endDate < currentTime ? "Ended on" : "Starts in"
-                        }
+                        status={timerStatus(item.startDate, item.endDate)}
                       />
 
                       <Button
                         className="participate-btn"
                         onClick={() => navigate(`/hackathon/${item.id}`)}
                       >
-                        Participate Now
+                        {currentTime > item.endDate
+                          ? "See Details"
+                          : "Participate Now"}
                       </Button>
                     </Card.Body>
                   </Card>

@@ -1,18 +1,13 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from "react";
 import "./styles/Btns.css";
 
-const Btns = ({ filterItem, setItem, user }) => {
-
-    const handleClick = ()=>{
-setItem(user)
-    }
-    useEffect(() => {
-     
-        setItem(user);
-
-
-    },[user])
-    
+const Btns = ({ filterItem, filterItem2, setItem, user }) => {
+  const handleClick = () => {
+    setItem(user);
+  };
+  useEffect(() => {
+    setItem(user);
+  }, [user]);
 
   return (
     <div className="filter-btns">
@@ -39,6 +34,29 @@ setItem(user)
       >
         Hard
       </button>
+      <button
+        className="btn-light  p-1 px-2 mx-5 btn "
+        onClick={() => filterItem2("Active")}
+        key="4"
+      >
+        Active
+      </button>
+
+      <button
+        className="btn-light p-1 px-2 mx-5 btn"
+        onClick={() => filterItem2("Up Coming")}
+        key="5"
+      >
+        Up Coming
+      </button>
+
+      <button
+        className="btn-light  p-1 px-2 mx-5 btn"
+        onClick={() => filterItem2("Past")}
+        key="6"
+      >
+        Past
+      </button>
 
       <button className="btn-light  p-1 px-3 mx-5  btn" onClick={handleClick}>
         All
@@ -47,4 +65,4 @@ setItem(user)
   );
 };
 
-export default Btns
+export default Btns;
