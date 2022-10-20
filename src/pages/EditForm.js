@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { db, storage } from "../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import {  serverTimestamp, updateDoc } from "firebase/firestore";
+import { serverTimestamp, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
-import { useParams } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
+import { useParams } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
 import "../components/styles/Form.css";
 
 const EditForm = () => {
@@ -22,7 +22,7 @@ const EditForm = () => {
 
   const [initialData, setInitialData] = useState(initialDetails);
   const [progress, setProgress] = useState(null);
-  const { title, description, startDate, endDate, level } = initialData;
+  const { title, description, startDate, endDate } = initialData;
   const [imageFile, setImageFile] = useState(null);
 
   const handleOnChange = (e) => {
@@ -130,6 +130,11 @@ const EditForm = () => {
         />
 
         <label htmlFor="image">Image</label>
+        <img
+          src={initialData.img}
+          alt="cover"
+          style={{ objectFit: "contain", height: "150px" }}
+        />
         <input
           type="file"
           name="image"
@@ -139,7 +144,7 @@ const EditForm = () => {
         />
 
         <label htmlFor="level">Level Type</label>
-        <select id="level" name="level" onChange={handleOnChange} >
+        <select id="level" name="level" onChange={handleOnChange}>
           <option value="Easy">Easy</option>
           <option value="Medium">Medium</option>
           <option value="Hard">Hard</option>
@@ -151,8 +156,6 @@ const EditForm = () => {
           disabled={progress !== null && progress < 100}
         >
           Save Changes
-
-
         </Button>
       </div>
     </div>

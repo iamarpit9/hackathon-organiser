@@ -43,9 +43,16 @@ select {
   height: 200px;
 }
 
-.form-input button{
-    width: 200px;
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 50px;
+.form-input button {
+  width: 200px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+
+ .form-input img {
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
 }

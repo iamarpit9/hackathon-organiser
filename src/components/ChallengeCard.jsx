@@ -106,10 +106,7 @@ const ChallengeCard = () => {
               .filter((item) => {
                 return searchParam.some((newItem) => {
                   return (
-                    item[newItem]
-                      .toString()
-                      .toLowerCase()
-                      .indexOf(search.toLowerCase()) > -1
+                   ( item[newItem]+ "").toString().toLowerCase().indexOf(search.toLowerCase()) > -1
                   );
                 });
               })
